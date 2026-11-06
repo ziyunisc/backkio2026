@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 카페 키오스크</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+
+  <!-- 키오스크 시작 안내 화면 -->
+  <div id="intro-screen" class="intro-screen">
+    <div class="intro-content">
+
+      <!-- 제목 -->
+      <h1 class="intro-title">
+        이 주문,<br>
+        <span class="intro-title-underline">
+          할 수 있나요?
+        </span>
+      </h1>
+
+      <!-- 짧은 설명 -->
+      <p class="intro-description">
+        누군가에겐 쉬운 주문이<br>
+        누군가에겐 어려운 도전이 됩니다.<br><br>
+        여러분도 직접 경험해 보세요.
+      </p>
+
+      <!-- 오늘의 상황 -->
+      <div class="intro-situation">
+
+        <span class="intro-label">
+          오늘의 상황
+        </span>
+
+        <p class="intro-situation-text">
+          🎁 딸이 생일 선물로 카페
+          <span class="gifticon-highlight">기프티콘</span>을 보내줬어요!
+        </p>
+
+        <p class="intro-situation-description">
+          기쁜 마음으로 카페에 왔는데,<br>
+          복잡한 키오스크 앞에서 막막해집니다.
+        </p>
+
+      </div>
+
+      <!-- 시작 버튼 -->
+      <div class="intro-start-area">
+
+        <p class="intro-time-notice">
+          ⏱ 제한시간은 <strong>30초</strong>입니다.
+        </p>
+        <button id="intro-start-btn" type="button">
+          주문 시작하기
+        </button>
+      </div>
+
+    </div>
+
+    <!-- 하단 초록색 물결 -->
+    <div class="intro-bottom-wave"></div>
+
+  </div>
+
+  <div class="kiosk">
+
+    <!-- 상단 타이머 및 미션 -->
+    <header class="top-bar">
+      <div class="timer">⏱ <span id="timer">30</span> 초</div>
+      <div class="mission">뒤에 3명 대기</div>
+    </header>
+
+    <!-- 메뉴 선택 화면 -->
+    <section id="menu-screen">
+
+
+
+      <nav class="category-bar">
+        <button class="active" data-category="커피">커피</button>
+        <button data-category="라떼">라떼</button>
+        <button data-category="에이드">에이드</button>
+        <button data-category="스무디">스무디</button>
+        <button data-category="주스">주스</button>
+        <button data-category="티">티</button>
+        <button data-category="디저트">디저트</button>
+      </nav>
+
+
+
+      <div class="menu-grid" id="menu-grid"></div>
+
+      <!-- AI 도우미 선택지 창 -->
+      <div id="ai-helper-panel" class="ai-helper-panel">
+
+        <div class="ai-helper-header">
+          <div>
+            <h2>메뉴 추천</h2>
+            <p>어떤 도움이 필요하세요?</p>
+          </div>
+
+          <button id="ai-helper-close" type="button">✕</button>
+        </div>
+
+        <div class="ai-helper-options">
+
+          <button type="button" id="ai-help-recommend">
+            ☕ 메뉴를 추천해 주세요
+          </button>
+        </div>
+
+        <!-- 메뉴 추천 선택지 -->
+
+        <!-- AI 메뉴 추천 상담 화면 -->
+        <div id="ai-recommend-screen" style="display:none;">
+
+          <h3 id="ai-recommend-question">
+            어떤 종류의 음료를 원하세요?
+          </h3>
+
+          <div id="ai-recommend-choices" class="ai-helper-options">
+          </div>
+
+          <div id="ai-recommend-result" style="display:none;">
+          </div>
+
+          <div class="ai-recommend-navigation">
+            <button type="button" id="ai-recommend-prev">
+              ← 이전 질문
+            </button>
+
+            <button type="button" id="ai-recommend-restart">
+              처음부터
+            </button>
+          </div>
+
+        </div>
+        <!-- AI 주문 방법 안내 화면 -->
+        <div id="ai-order-guide" style="display:none;">
+          <h3>🛒 주문 방법을 알려드릴게요!</h3>
+          <p class="ai-order-guide-intro">
+            아래 순서대로 천천히 따라 해 보세요.
+          </p>
+
+          <div class="ai-order-guide-step">
+            <strong>① 음료 선택하기</strong>
+            <p>원하는 음료 종류를 고른 뒤, 음료를 눌러주세요.</p>
+          </div>
+
+          <div class="ai-order-guide-step">
+            <strong>② 옵션 선택하기</strong>
+            <p>온도, 크기, 컵 종류 등을 선택해 주세요.</p>
+          </div>
+
+          <div class="ai-order-guide-step">
+            <strong>③ 장바구니에 담기</strong>
+            <p>옵션을 모두 선택했다면 '담기' 버튼을 눌러주세요.</p>
+          </div>
+
+          <div class="ai-order-guide-step">
+            <strong>④ 주문하기</strong>
+            <p>메뉴 화면에서 '주문하기' 버튼을 눌러주세요.</p>
+          </div>
+          SSSSSSSSS
+          <div class="ai-order-guide-step">
+            <strong>⑤ 주문 완료하기</strong>
+            <p>결제 수단과 포인트 적립 안내를 따라 진행해 주세요.</p>
+          </div>
+
+          <button type="button" id="ai-order-guide-back">
+            ← 처음으로 돌아가기
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 옵션 선택 화면 -->
+    <section id="option-screen" class="hidden">
+      <!-- AI 모드 전용 단계별 옵션 선택 -->
+      <div id="ai-option-wizard" class="ai-option-wizard hidden">
+
+        <div class="ai-wizard-header">
+          <span>✨ AI 주문 도우미</span>
+          <span id="ai-wizard-step-count">1 / 8</span>
+        </div>
+
+        <div class="ai-wizard-progress">
+          <div id="ai-wizard-progress-fill"></div>
+        </div>
+
+        <div class="ai-wizard-drink">
+          <span>선택한 음료</span>
+          <strong id="ai-wizard-drink-name"></strong>
+        </div>
+
+        <div class="ai-wizard-body">
+          <h2 id="ai-wizard-question"></h2>
+          <p id="ai-wizard-description"></p>
+
+          <div id="ai-wizard-choices"></div>
+
+
+        </div>
+
+        <div class="ai-wizard-footer">
+          <button type="button" id="ai-wizard-back">이전</button>
+          <button type="button" id="ai-wizard-next">다음</button>
+        </div>
+
+      </div>
+
+      <div class="option-content">
+
+        <h3>온도 선택 <em>*필수</em></h3>
+        <div class="option-group">
+          <button class="pill">HOT</button>
+          <button class="pill selected">ICE</button>
+        </div>
+
+        <h3>사이즈 <em>*필수</em></h3>
+        <div class="option-group">
+          <button class="pill">Short</button>
+          <button class="pill">Tall</button>
+          <button class="pill">Grande <span class="option-price">+500</span></button>
+          <button class="pill">Venti <span class="option-price">+1000</span></button>
+        </div>
+
+        <h3>에스프레소 샷 (기본 1샷)</h3>
+        <div class="shot-counter">
+          <button id="shot-minus">−</button>
+          <span id="shot-count">1</span>
+          <button id="shot-plus">+</button>
+          <small>추가 1샷 +500원</small>
+        </div>
+
+        <h3>시럽 · 소스</h3>
+        <div class="option-group">
+          <button class="pill selected">기본</button>
+        </div>
+
+        <h3>우유 선택</h3>
+        <div class="option-group">
+          <button class="pill selected">일반우유</button>
+          <button class="pill">저지방</button>
+          <button class="pill">오트밀크 <span class="option-price">+600</span></button>
+          <button class="pill">두유 <span class="option-price">+600</span></button>
+          <button class="pill">아몬드 <span class="option-price">+600</span></button>
+        </div>
+
+        <h3>얼음량 (ICE 선택 시)</h3>
+        <div class="option-group">
+          <button class="pill">적게</button>
+          <button class="pill selected">보통</button>
+          <button class="pill">많이</button>
+        </div>
+
+        <h3>컵 선택 <em>*필수</em></h3>
+        <div class="option-group">
+          <button class="pill">일회용</button>
+          <button class="pill">매장컵</button>
+          <button class="pill">개인텀블러</button>
+        </div>
+
+        <h3>추가 토핑</h3>
+        <div class="option-group">
+          <button class="pill">휘핑크림 <span class="option-price">+500</span></button>
+          <button class="pill">초코드리즐 <span class="option-price">+300</span></button>
+          <button class="pill">카라멜드리즐 <span class="option-price">+300</span></button>
+          <button class="pill">시나몬파우더 <span class="option-price">+200</span></button>
+          <button class="pill">자바칩 <span class="option-price">+700</span></button>
+        </div>
+
+      </div>
+
+      <div class="option-footer">
+        <button class="cancel-btn">취소</button>
+        <button class="confirm-btn">담기</button>
+      </div>
+
+    </section>
+
+    <!-- 메뉴 화면 하단 -->
+    <footer class="bottom-bar" id="bottom-bar">
+      <span>🛒 <b id="cart-count">0건</b> · <b id="cart-total">0원</b></span>
+      <button id="order-btn" disabled>주문하기</button>
+    </footer>
+
+    <!-- AI 도우미 버튼 -->
+
+    <button id="ai-assistant-btn" class="ai-assistant-btn" type="button">
+      <span class="ai-icon-circle">
+        <img src="{{ url_for('static', filename='images/icon.png') }}" class="ai-robot-icon" alt="">
+      </span>
+      <span class="ai-button-text">메뉴 추천</span>
+    </button>
+
+  </div>
+
+  <!-- 세트 구매 제안 팝업 -->
+  <div id="upsell-overlay" class="upsell-overlay hidden">
+
+    <div class="upsell-sheet">
+
+      <div class="upsell-handle"></div>
+
+      <h2>🍰 이런 디저트는 어떠세요?</h2>
+
+      <p class="upsell-description">
+        주문하신 음료와 함께 즐기기 좋은 디저트예요!
+      </p>
+
+      <button id="upsell-accept" class="upsell-accept">
+        이 디저트 추가하기
+      </button>
+
+      <button id="upsell-decline" class="upsell-decline">
+        괜찮습니다, 음료만 주문할게요
+      </button>
+
+
+    </div>
+
+  </div>
+
+  <!-- 결제 수단 선택 팝업 -->
+  <div id="payment-overlay" class="upsell-overlay hidden">
+    <div class="upsell-sheet payment-sheet">
+
+      <h2>결제 수단을 선택해주세요</h2>
+      <div id="payment-amount" class="payment-amount">0원</div>
+
+      <div class="payment-grid">
+        <button class="payment-option">💳<span>신용카드</span></button>
+        <button class="payment-option">🏦<span>체크카드</span></button>
+        <button class="payment-option">💵<span>현금</span></button>
+
+        <button class="payment-option">📱<span>삼성페이</span></button>
+        <button class="payment-option">💬<span>카카오페이</span></button>
+        <button class="payment-option">🟢<span>네이버페이</span></button>
+
+        <button class="payment-option">🔵<span>페이코</span></button>
+        <button class="payment-option">🎁<span>기프티콘/상품권</span></button>
+        <button class="payment-option">🎟️<span>모바일 쿠폰</span></button>
+
+        <button class="payment-option">⭐<span>포인트 결제</span></button>
+        <button class="payment-option">🏧<span>앱 주문 결제</span></button>
+        <button class="payment-option">🔀<span>복합 결제</span></button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 결제 실패 팝업 -->
+  <div id="payment-fail-overlay" class="payment-fail-overlay hidden">
+    <div class="payment-fail-box">
+      <div class="payment-fail-icon">✕</div>
+
+      <h2>결제에 실패했습니다</h2>
+
+      <p>
+        선택하신 결제 수단으로는<br>
+        결제를 진행할 수 없습니다.
+      </p>
+
+      <button id="payment-fail-confirm" type="button">
+        확인
+      </button>
+    </div>
+  </div>
+
+  <!-- 포인트 적립 팝업 -->
+  <div id="points-overlay" class="upsell-overlay hidden">
+    <div class="upsell-sheet points-sheet">
+
+      <h2>포인트 적립하시겠습니까?</h2>
+      <p class="upsell-description">
+        전화번호 또는 멤버십 카드를 등록해주세요
+      </p>
+
+      <div class="points-options">
+        <button class="points-option" data-points="phone">
+          📞 <span>전화번호 입력</span>
+        </button>
+
+        <button class="points-option" data-points="card">
+          💳 <span>멤버십 카드 스캔</span>
+        </button>
+
+        <button class="points-option" data-points="barcode">
+          📱 <span>앱 바코드</span>
+        </button>
+      </div>
+
+      <button id="points-skip" class="points-skip">
+        적립하지 않을게요
+      </button>
+
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='recommendation-data.js') }}"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <div id="ai-transition" class="ai-transition">
+    <div class="ai-transition-content">
+      <div class="ai-transition-icon">✦</div>
+      <h1>AI 키오스크</h1>
+      <p id="ai-transition-text">AI 시스템을 준비하고 있습니다...</p>
+
+      <div class="ai-progress-track">
+        <div class="ai-progress-bar"></div>
+      </div>
+
+      <span class="ai-transition-caption">
+        더 쉽고 편리한 주문 경험
+      </span>
+    </div>
+  </div>
+
+
+  <!-- AI 추천 음료 주문 확인 팝업 -->
+  <div id="ai-order-modal" class="ai-order-modal" style="display:none;">
+
+    <div class="ai-order-modal-box">
+      <div class="ai-order-modal-icon">🛒</div>
+
+      <h2>이 음료를 주문하시겠습니까?</h2>
+
+      <p id="ai-order-modal-drink"></p>
+
+      <div class="ai-order-modal-buttons">
+        <button type="button" id="ai-order-modal-cancel">
+          아니요
+        </button>
+
+        <button type="button" id="ai-order-modal-confirm">
+          네, 주문할게요
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+<!-- 제한 시간 경고 팝업 -->
+<div id="time-warning" class="time-warning">
+  <span class="warning-icon">⚠️</span>
+  <div class="warning-text">
+    <strong id="warning-title">제한 시간 경고!</strong>
+    <p id="warning-message">제한 시간이 얼마 남지 않았습니다!</p>
+  </div>
+</div>
+
+</html>

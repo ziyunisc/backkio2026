@@ -1,0 +1,3230 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  background-color: #e5e5e5;
+  color: #222;
+}
+.mission {
+    color: #ffc229;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* 키오스크 전체 */
+.kiosk {
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  min-height: 600px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 타이머 */
+.top-bar {
+  height: 40px;
+  background: #444;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* 메뉴 화면 */
+#menu-screen {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+
+/* 카테고리 전체 */
+
+
+.category-bar {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    width: 100%;
+    background: white;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+}
+
+.category-bar button {
+    width: 100%;
+    min-width: 0;
+    background: white;
+    border: none;
+    border-right: 1px solid #eee;
+    padding: 13px 1px;
+    font-size: 10px;
+    color: #555;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.category-bar .active {
+    background: #e0e0e0;
+    color: #111;
+    font-weight: bold;
+}
+
+
+/* 음료 메뉴 */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 8px;
+}
+
+.menu-card {
+  height: 125px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.menu-card:hover {
+  background: #f1f1f1;
+}
+
+.drink-icon {
+  width: 60px;
+  height: 60px;
+  background: #f0f0f0;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  margin-bottom: 7px;
+}
+
+.menu-card strong {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.menu-card small {
+  font-size: 9px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.menu-card span {
+  font-size: 11px;
+  color: #444;
+  margin-top: 4px;
+}
+
+/* 주문 하단 */
+.bottom-bar {
+  height: 70px;
+  background: white;
+  border-top: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  flex-shrink: 0;
+}
+
+.bottom-bar span {
+  font-size: 13px;
+}
+
+#order-btn {
+  width: 110px;
+  height: 42px;
+  background: #555;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#order-btn:disabled {
+  background: #bbb;
+}
+
+/* 옵션 선택 화면 */
+#option-screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.option-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.option-content h3 {
+  font-size: 12px;
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+.option-content em {
+  color: red;
+  font-style: normal;
+}
+
+/* 옵션 버튼 */
+.option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 9px 13px;
+  font-size: 11px;
+  color: #000000;
+}
+
+.pill.selected {
+    background-color: #555;
+    color: white;
+    border-color: #555;
+    font-weight: bold;
+}
+
+/* 샷 추가 */
+.shot-counter {
+  display: flex;
+  align-items: center;
+}
+
+.shot-counter button,
+.shot-counter span {
+  padding: 9px 13px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  font-size: 12px;
+}
+
+.shot-counter span {
+  background: white;
+}
+
+.shot-counter small {
+  margin-left: 10px;
+  color: #888;
+  font-size: 10px;
+}
+
+/* 옵션 하단 */
+.option-footer {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid #ddd;
+  background: white;
+}
+
+.option-footer button {
+  flex: 1;
+  height: 45px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  background: #eee;
+  border: 1px solid #ccc;
+  color: #444;
+}
+
+.confirm-btn {
+  background: #555;
+  border: 1px solid #555;
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+
+/* ============================
+   영수증 결과 화면
+============================ */
+
+.receipt-screen {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+    background: #edf0f4;
+    overflow-y: auto;
+    padding: 20px 14px 24px;
+    font-family: inherit;
+}
+
+/* 영수증 종이 */
+.receipt-paper {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 25px 22px 28px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    color: #222;
+}
+
+/* 브랜드 */
+.receipt-brand {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.receipt-brand-icon {
+    font-size: 30px;
+    margin-bottom: 6px;
+}
+
+.receipt-brand h2 {
+    font-size: 24px;
+    letter-spacing: 3px;
+    margin: 0;
+    font-weight: 900;
+}
+
+.receipt-brand p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #999;
+    margin: 7px 0 0;
+}
+
+/* 영수증 점선 */
+.receipt-dashed {
+    border-top: 1px dashed #ccc;
+    margin: 18px 0;
+}
+
+/* 주문 정보 */
+.receipt-order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.receipt-order-info div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.receipt-order-info span {
+    color: #777;
+}
+
+/* 주문 내역 */
+.receipt-section-title {
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.receipt-item-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.receipt-item p {
+    margin: 9px 0 0;
+    padding-left: 12px;
+    color: #777;
+    font-size: 11px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+/* 가격 */
+.receipt-price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin: 11px 0;
+}
+
+.receipt-discount {
+    color: #e54d4d;
+    font-weight: 700;
+}
+
+.receipt-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.receipt-total strong:last-child {
+    font-size: 20px;
+}
+
+.receipt-payment-note {
+    font-size: 10px;
+    text-align: right;
+    color: #999;
+    margin-top: 12px;
+}
+
+/* 미션 결과 박스 */
+.receipt-result {
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px 12px;
+    margin-top: 22px;
+}
+
+.receipt-result.success {
+    background: #eaf8f0;
+    border: 1px solid #b9e7cc;
+}
+
+.receipt-result.fail {
+    background: #fff3e3;
+    border: 1px solid #ffdaa7;
+}
+
+.receipt-result-label {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.receipt-result.success .receipt-result-label {
+    background: #249768;
+}
+
+.receipt-result.fail .receipt-result-label {
+    background: #f36a25;
+}
+
+.receipt-result h3 {
+    margin: 14px 0 9px;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.receipt-result p {
+    font-size: 12px;
+    line-height: 1.7;
+    margin: 7px 0;
+}
+
+.receipt-result-description {
+    color: #777;
+    font-size: 11px !important;
+}
+
+/* 장식용 바코드 */
+.receipt-barcode {
+    height: 48px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 3px;
+    margin: 28px auto 6px;
+    overflow: hidden;
+}
+
+.receipt-barcode span {
+    display: block;
+    width: 2px;
+    background: #222;
+}
+
+.receipt-barcode span:nth-child(3n) {
+    width: 5px;
+}
+
+.receipt-barcode span:nth-child(4n) {
+    width: 1px;
+}
+
+.receipt-barcode span:nth-child(5n) {
+    width: 3px;
+}
+
+.receipt-code {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #999;
+}
+
+/* AI 버튼 */
+.receipt-actions {
+    max-width: 440px;
+    margin: 16px auto 0;
+}
+
+.receipt-ai-btn {
+    width: 100%;
+    min-height: 60px;
+    border: none;
+    border-radius: 11px;
+    padding: 15px 12px;
+    background: #00d98a;
+    color: #073e2b;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.5;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,180,110,0.15);
+    transition: background 0.2s;
+}
+
+.receipt-ai-btn:hover {
+    background: #00bf78;
+}
+
+.receipt-footer {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 11px;
+    color: #a0a5ac;
+}
+
+/* 작은 화면 */
+@media (max-width: 480px) {
+    .receipt-screen {
+        padding: 12px 8px 20px;
+    }
+
+    .receipt-paper {
+        padding: 22px 16px;
+    }
+
+    .receipt-ai-btn {
+        font-size: 13px;
+    }
+}
+/* 옵션 가격 글씨 */
+.option-group button.pill span.option-price {
+    color: #a1a1a1 !important;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* 선택된 옵션의 가격 표시 */
+.option-group button.pill.selected span.option-price {
+    color: #807f7f !important;
+    padding: 3px 5px;
+    border-radius: 4px;
+}
+
+/* 팝업 배경 */
+.upsell-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.48);
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* 팝업 본체 */
+.upsell-sheet {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    border-radius: 16px 16px 0 0;
+    padding: 18px 16px 32px;
+    text-align: center;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+    animation: upsellSlideUp 0.25s ease-out;
+}
+
+.upsell-handle {
+    width: 38px;
+    height: 4px;
+    background: #ddd;
+    border-radius: 10px;
+    margin: 0 auto 20px;
+}
+
+.upsell-sheet h2 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #222;
+    margin: 0 0 10px;
+}
+
+.upsell-description {
+    font-size: 13px;
+    color: #777;
+    margin: 0 0 28px;
+}
+
+/* 세트 변경 버튼 */
+.upsell-accept {
+    display: block;
+    width: 100%;
+    height: 46px;
+    background: #193e30;
+    border: none;
+    border-radius: 11px;
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+/* 거절 버튼 */
+.upsell-decline {
+    display: block;
+    width: 100%;
+    height: 46px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 11px;
+    color: #222;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* 다른 메뉴 보기 */
+.upsell-more {
+    display: block;
+    margin: 13px auto 0;
+    border: none;
+    background: transparent;
+    color: #aaa;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* 등장 애니메이션 */
+@keyframes upsellSlideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* 결제 팝업 */
+.payment-sheet {
+    padding-top: 22px;
+    padding-bottom: 26px;
+}
+
+.payment-sheet h2,
+.points-sheet h2 {
+    font-size: 16px;
+    color: #111;
+    text-align: center;
+    margin: 0 0 8px;
+}
+
+.payment-amount {
+    font-size: 23px;
+    font-weight: 900;
+    color: #193e30;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.payment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.payment-option {
+    min-width: 0;
+    height: 76px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: white;
+    font-size: 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+
+.payment-option span {
+    font-size: 10px;
+    color: #555;
+}
+
+.payment-option:active,
+.points-option:active {
+    background: #eaf3ef;
+    border-color: #193e30;
+}
+
+/* 포인트 적립 팝업 */
+.points-sheet {
+    padding: 28px 22px 36px;
+}
+
+.points-sheet .upsell-description {
+    margin-bottom: 24px;
+}
+
+.points-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.points-option {
+    width: 100%;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: white;
+    font-size: 21px;
+    text-align: left;
+}
+
+.points-option span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+}
+
+.points-skip {
+    display: block;
+    margin: 24px auto 0;
+    border: none;
+    background: transparent;
+    color: #aaa;
+    text-decoration: underline;
+    font-size: 11px;
+}
+
+/* 작은 키오스크에서도 결제 버튼 표시 */
+.payment-sheet {
+    max-height: 90dvh;
+    overflow-y: auto;
+}
+
+/* 제한 시간 경고 팝업 */
+.time-warning {
+    position: fixed;
+    top: 55px;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    width: calc(100% - 32px);
+    max-width: 395px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 18px;
+    background: #fff4e5;
+    border: 2px solid #ff8a00;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* 팝업 표시 */
+.time-warning.show {
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+.warning-icon {
+    font-size: 26px;
+}
+
+.warning-text strong {
+    font-size: 14px;
+    color: #d35400;
+}
+
+.warning-text p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #444;
+}
+
+/* 5초 남았을 때 긴급 경고 */
+.time-warning.urgent {
+    background: #ffe8e8;
+    border-color: #e53935;
+}
+
+.time-warning.urgent .warning-text strong {
+    color: #c62828;
+}
+
+/* 키오스크 전체 화면 블러 처리 */
+.kiosk {
+    filter: blur(0.5px);
+}
+body.ai-mode .kiosk {
+    filter: none !important;
+}
+
+
+/* AI 모드 전환 화면 */
+.ai-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #101e32, #263e5d, #12283e);
+    color: white;
+}
+
+.ai-transition.show {
+    display: flex;
+    animation: aiFadeIn 0.45s ease both;
+}
+
+.ai-transition::before {
+    content: "";
+    position: absolute;
+    width: 65vmax;
+    height: 65vmax;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(104, 197, 255, 0.25),
+        transparent 65%
+    );
+    animation: aiGlow 2.5s ease-in-out infinite;
+}
+
+.ai-transition-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: min(80%, 460px);
+}
+
+.ai-transition-icon {
+    font-size: 85px;
+    color: #8cdaff;
+    animation: aiPulse 1.5s ease-in-out infinite;
+}
+
+.ai-transition h1 {
+    font-size: 42px;
+    margin: 16px 0;
+    color: #fff;
+}
+
+.ai-transition p {
+    font-size: 19px;
+    color: #d5eaff;
+    margin-bottom: 30px;
+}
+
+.ai-progress-track {
+    height: 7px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    overflow: hidden;
+}
+
+.ai-progress-bar {
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #57baff, #b6f4ff);
+}
+
+.ai-transition.show .ai-progress-bar {
+    animation: aiLoading 3s linear forwards;
+}
+
+.ai-transition-caption {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #a7c9e8;
+    letter-spacing: 2px;
+}
+
+@keyframes aiFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes aiPulse {
+    0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.65;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+        text-shadow: 0 0 40px #6ccfff;
+    }
+}
+
+@keyframes aiGlow {
+    0%, 100% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes aiLoading {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+
+/* AI 도우미 선택지 창 */
+.ai-helper-panel {
+    display: none;
+    width: calc(100% - 40px);
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 22px;
+    background: #ffffff;
+    border: 2px solid #c9ddf2;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(30, 60, 100, 0.12);
+    box-sizing: border-box;
+}
+
+/* 창이 열렸을 때 */
+.ai-helper-panel.open {
+    display: block;
+    animation: aiHelperAppear 0.3s ease-out;
+}
+
+/* 상단 제목 */
+.ai-helper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.ai-helper-header h2 {
+    margin: 0;
+    font-size: 25px;
+    color: #263f5d;
+}
+
+.ai-helper-header p {
+    margin: 7px 0 0;
+    font-size: 16px;
+    color: #6b7785;
+}
+
+/* 닫기 버튼 */
+#ai-helper-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #edf2f7;
+    color: #364b62;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+/* 선택지 배치 */
+.ai-helper-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* 선택지 버튼 */
+.ai-helper-options button {
+    min-height: 85px;
+    padding: 15px;
+    border: 1px solid #d7e5f3;
+    border-radius: 13px;
+    background: #f2f7fd;
+    color: #263f5d;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.ai-helper-options button:hover {
+    background: #e0efff;
+    transform: translateY(-2px);
+}
+
+/* 등장 애니메이션 */
+@keyframes aiHelperAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* AI 도우미 버튼 */
+.ai-assistant-btn {
+    position: absolute;
+    right: 20px;
+    bottom: 90px;
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    padding: 10px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    color: #263f5d;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 로봇 아이콘 */
+.ai-robot-icon {
+    display: block;
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+
+/* 마우스를 올렸을 때 */
+.ai-assistant-btn:hover {
+    transform: scale(1.05);
+}
+/* =========================
+   AI 가독성 개선 모드
+   기존 디자인 유지 + 적당한 확대
+========================= */
+
+/* AI 가독성 모드 - 메뉴 정렬 통일 */
+
+/* 3열 메뉴 유지 */
+body.readable-mode .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+/* 메뉴 카드: 내부를 4개 행으로 분리 */
+body.readable-mode .menu-card {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    height: 180px;
+    min-height: 0;
+    padding: 10px 6px;
+
+    display: grid;
+    grid-template-rows: 68px 42px 18px 22px;
+    justify-items: center;
+    align-content: center;
+    row-gap: 3px;
+
+    background: #ffffff;
+    border: 1px solid #d8e0e9;
+    border-radius: 9px;
+    text-align: center;
+}
+
+/* 1행: 회색 이미지 영역 */
+body.readable-mode .drink-icon {
+    box-sizing: border-box;
+    width: 68px;
+    height: 68px;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 42px;
+    line-height: 1;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+body.readable-mode .drink-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 2행: 메뉴 이름 */
+body.readable-mode .menu-card strong {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+
+    white-space: normal;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+/* 3행: 음료 종류 */
+body.readable-mode .menu-card small {
+    display: block;
+    margin: 0;
+    font-size: 12px;
+    line-height: 18px;
+    color: #888888;
+}
+
+/* 4행: 가격 */
+body.readable-mode .menu-card span {
+    display: block;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    color: #333333;
+}
+/* AI 가독성 개선 - 카테고리 크기 조정 */
+
+body.readable-mode .category-bar {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    width: 100%;
+}
+
+/* 버튼 크기 및 글씨 확대 */
+body.readable-mode .category-bar button {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+
+    padding: 17px 2px;
+    font-size: 16px;
+    line-height: 1.3;
+
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* AI 화면 개선 로딩 */
+.ai-readable-loading {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(15, 25, 40, 0.28);
+}
+
+.ai-readable-loading.show {
+    display: flex;
+}
+
+.ai-readable-box {
+    width: 260px;
+    padding: 30px 24px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    text-align: center;
+}
+
+.ai-readable-spinner {
+    width: 38px;
+    height: 38px;
+    border: 4px solid #e4ebf3;
+    border-top-color: #315b86;
+    border-radius: 50%;
+    animation: readableSpin 0.8s linear infinite;
+}
+
+@keyframes readableSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ai-readable-box h3 {
+    margin: 0;
+    font-size: 17px;
+    color: #263f5d;
+}
+
+.ai-readable-box p {
+    margin: 0;
+    font-size: 13px;
+    color: #777;
+}
+/* AI 메뉴 추천 하단 버튼 영역 */
+.ai-recommend-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+/* 이전 질문 / 처음부터 버튼 */
+.ai-recommend-navigation button {
+    padding: 10px 18px;
+    border: 1px solid #dce5f0;
+    border-radius: 10px;
+    background-color: #f3f7fc;
+    color: #34465c;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ai-recommend-navigation button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+/* 추천 결과 전체 */
+#ai-recommend-result {
+    padding: 0 !important;
+    text-align: left !important;
+}
+
+/* 추천 결과 제목 */
+.ai-result-heading {
+    margin: 8px 0 24px;
+    text-align: left;
+}
+
+.ai-result-heading h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #24364b;
+}
+
+.ai-result-heading p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #45566b;
+}
+
+/* 추천 카드 공통 */
+.ai-result-card {
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1.5px solid #d7e0ea;
+    border-radius: 16px;
+    background: #ffffff;
+}
+/* ai 추천 결과 버튼 */
+.ai-result-first,
+.ai-result-second {
+    background: #ffffff;
+    border: 2px solid #d7e0ea;
+}
+
+/* 마우스를 올렸을 때 */
+.ai-result-card {
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.ai-result-card:hover {
+    border-color: #a8c7ed;
+}
+
+/* 사용자가 직접 선택했을 때 */
+.ai-result-card.selected {
+    background: #f0f7ff;
+    border-color: #5588d5;
+}
+
+/* 선택된 카드 표시 */
+.ai-result-card.selected .ai-result-label {
+    color: #245b9a;
+}
+/* 추천 순위 */
+.ai-result-label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #244c79;
+}
+
+/* 음료 정보 배치 */
+.ai-result-drink {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ai-result-emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    flex-shrink: 0;
+    border-radius: 13px;
+    background: #e0edfc;
+    font-size: 32px;
+}
+
+.ai-result-second .ai-result-emoji {
+    background: #f0f3f7;
+}
+
+/* 음료 이름과 설명 */
+.ai-result-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ai-result-info h4 {
+    margin: 0 0 8px;
+    font-size: 23px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #1e3045;
+}
+
+.ai-result-info p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #34465a;
+    word-break: keep-all;
+}
+#ai-recommend-confirm {
+    margin-top: 20px;
+    padding: 18px;
+    border: 1px solid #c9d9ec;
+    border-radius: 14px;
+    background: #f5f9ff;
+    text-align: center;
+}
+
+#ai-recommend-confirm h3 {
+    margin: 0 0 16px;
+    font-size: 19px;
+    line-height: 1.5;
+    color: #24364b;
+}
+
+.ai-recommend-confirm-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.ai-recommend-confirm-buttons button {
+    flex: 1;
+    min-height: 48px;
+    padding: 10px;
+    border: 1px solid #b8cbe2;
+    border-radius: 10px;
+    background: white;
+    color: #24364b;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#ai-recommend-accept {
+    background: #377dc5;
+    color: white;
+    border-color: #377dc5;
+}
+
+/* 화면 전체를 어둡게 덮는 배경 */
+.ai-order-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background: rgba(15, 25, 40, 0.5);
+}
+
+/* 중앙 팝업 */
+.ai-order-modal-box {
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+    padding: 24px 20px;
+
+    background: #ffffff;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* 장바구니 그림 */
+.ai-order-modal-icon {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+/* 질문 */
+.ai-order-modal-box h2 {
+    margin: 0 0 14px;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.5;
+    color: #24364b;
+    word-break: keep-all;
+}
+
+/* 선택한 음료 이름 */
+#ai-order-modal-drink {
+    margin: 0 0 28px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #377dc5;
+}
+
+/* 버튼 배치 */
+.ai-order-modal-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.ai-order-modal-buttons button {
+    flex: 1;
+    min-height: 54px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #c8d5e5;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#ai-order-modal-cancel {
+    background: #f2f5f9;
+    color: #34465a;
+}
+
+#ai-order-modal-confirm {
+    background: #377dc5;
+    border-color: #377dc5;
+    color: #ffffff;
+}
+
+/* AI 주문 방법 안내 */
+#ai-order-guide {
+    margin-top: 18px;
+}
+
+#ai-order-guide h3 {
+    font-size: 22px;
+    color: #24364b;
+    margin: 0 0 10px;
+}
+
+.ai-order-guide-intro {
+    font-size: 17px;
+    color: #526174;
+    margin-bottom: 20px;
+}
+
+.ai-order-guide-step {
+    background: #ffffff;
+    border: 1px solid #d7e0ea;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.ai-order-guide-step strong {
+    display: block;
+    font-size: 19px;
+    color: #245b9a;
+    margin-bottom: 7px;
+}
+
+.ai-order-guide-step p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #34465a;
+}
+
+#ai-order-guide-back {
+    width: 100%;
+    margin-top: 14px;
+    padding: 14px;
+    border: 1px solid #b8cbe2;
+    border-radius: 10px;
+    background: #f2f7fc;
+    color: #245b9a;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* AI 메뉴 추천 버튼 */
+
+.ai-assistant-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* 아이콘 뒤 원형 배경 */
+.ai-icon-circle {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+
+    background-color: #263f5d;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 4px 12px rgba(38, 63, 93, 0.2);
+}
+
+/* 흰색 아이콘 */
+.ai-robot-icon {
+    display: block;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+/* 메뉴 추천 글씨 */
+.ai-button-text {
+    font-size: 17px;
+    font-weight: 800;
+    color: #263f5d;
+    white-space: nowrap;
+}
+
+/* 마우스를 올렸을 때 */
+.ai-assistant-btn:hover .ai-icon-circle {
+    background-color: #34577d;
+}
+
+.ai-assistant-btn:active .ai-icon-circle {
+    transform: scale(0.95);
+}
+
+/* 결과 화면에서는 제한시간 경고창 숨기기 */
+body:has(.receipt-screen) .time-warning {
+    display: none !important;
+}
+
+
+/* 메뉴 추천 버튼 크기 및 위치 조정 */
+.ai-assistant-btn {
+    right: 20px;
+    bottom: 75px; /* 기존 90px → 75px */
+    gap: 6px;
+}
+
+/* 원형 배경 크기 축소 */
+.ai-icon-circle {
+    width: 70px;  /* 기존 82px */
+    height: 70px;
+}
+
+/* 아이콘 크기 축소 */
+.ai-robot-icon {
+    width: 49px;  /* 기존 58px */
+    height: 49px;
+}
+
+/* 메뉴 추천 글씨 크기 축소 */
+.ai-button-text {
+    font-size: 15px; /* 기존 17px */
+}
+/* ==========================================
+   AI 모드 전용 단계별 옵션 선택 화면
+========================================== */
+
+body.ai-mode #option-screen .option-content,
+body.ai-mode #option-screen .option-footer {
+    display: none !important;
+}
+
+body.ai-mode #option-screen {
+    background: #f5f8fc;
+}
+
+.ai-option-wizard {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    padding: 22px 18px 18px;
+    background: #f5f8fc;
+}
+
+.ai-wizard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #315b86;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.ai-wizard-progress {
+    height: 7px;
+    margin-top: 15px;
+    border-radius: 20px;
+    background: #dfe8f3;
+    overflow: hidden;
+}
+
+#ai-wizard-progress-fill {
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: #477fb5;
+    transition: width 0.25s ease;
+}
+
+.ai-wizard-drink {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 22px;
+    padding: 16px 18px;
+    background: #e8f1fb;
+    border-radius: 12px;
+}
+
+.ai-wizard-drink span {
+    color: #607b96;
+    font-size: 13px;
+}
+
+.ai-wizard-drink strong {
+    color: #243e5c;
+    font-size: 21px;
+}
+
+.ai-wizard-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 25px 2px 18px;
+}
+
+#ai-wizard-question {
+    margin: 0 0 10px;
+    color: #20354e;
+    font-size: 23px;
+    font-weight: 800;
+    line-height: 1.4;
+    word-break: keep-all;
+}
+
+#ai-wizard-description {
+    margin: 0 0 26px;
+    color: #687d92;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+#ai-wizard-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ai-wizard-choice {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 66px;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1.5px solid #d5e0ec;
+    border-radius: 13px;
+    color: #273e58;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.ai-wizard-choice.selected {
+    border: 2px solid #477fb5;
+    background: #edf5ff;
+    color: #245b93;
+}
+
+.ai-wizard-choice .choice-check {
+    flex-shrink: 0;
+    color: #477fb5;
+    font-size: 21px;
+}
+
+.ai-wizard-footer {
+    display: flex;
+    gap: 12px;
+    padding-top: 14px;
+    background: #f5f8fc;
+}
+
+.ai-wizard-footer button {
+    flex: 1;
+    min-height: 54px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#ai-wizard-back {
+    background: #fff;
+    color: #36516d;
+    border: 1px solid #cbd8e6;
+}
+
+#ai-wizard-next {
+    background: #477fb5;
+    color: #fff;
+    border: none;
+}
+
+#ai-wizard-next:disabled {
+    background: #aebdcb;
+    cursor: not-allowed;
+}
+
+#ai-wizard-back:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* 마지막 주문 확인 화면 */
+.ai-wizard-summary {
+    padding: 16px;
+    background: white;
+    border: 1px solid #d5e0ec;
+    border-radius: 13px;
+}
+
+.ai-wizard-summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid #edf0f4;
+    font-size: 14px;
+}
+
+.ai-wizard-summary-row span {
+    color: #6b7d90;
+}
+
+.ai-wizard-summary-row strong {
+    text-align: right;
+    color: #273e58;
+}
+
+.ai-wizard-summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 2px solid #d5e0ec;
+    font-size: 19px;
+    font-weight: 800;
+    color: #245b93;
+}
+
+/* ==========================================
+   스탠바이미 2 세로 모드 최적화
+   기존 디자인 유지 + 비율 조정 + 스크롤 보호
+========================================== */
+
+@media screen and (min-width: 600px)
+       and (orientation: portrait) {
+
+    /* 1. 전체 화면 */
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+    .kiosk {
+        width: 100%;
+        max-width: none;
+        height: 100vh;
+        height: 100dvh;
+        min-height: 0;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    /* 2. 상단 타이머 */
+    .top-bar {
+        height: clamp(40px, 5dvh, 64px);
+        flex-shrink: 0;
+        padding-inline: clamp(12px, 2vw, 24px);
+        font-size: clamp(13px, 1.5vw, 18px);
+    }
+
+    /* 3. 메뉴 화면 */
+    #menu-screen {
+        flex: 1;
+        min-width: 0;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 4. 카테고리: 기존 7개 배치 유지 */
+    .category-bar,
+    body.readable-mode .category-bar {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .category-bar button,
+    body.readable-mode .category-bar button {
+        width: 100%;
+        min-width: 0;
+        min-height: clamp(44px, 5.5dvh, 65px);
+        padding: 8px 2px;
+        font-size: clamp(10px, 1.35vw, 17px);
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    body.readable-mode .category-bar button {
+        font-size: clamp(12px, 1.6vw, 20px);
+    }
+
+    /* 5. 메뉴: 3열 유지 */
+    .menu-grid,
+    body.readable-mode .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(8px, 1.3vw, 16px);
+        padding: clamp(10px, 1.8vw, 22px);
+        box-sizing: border-box;
+    }
+
+    /* 6. 메뉴 카드 */
+    .menu-card,
+    body.readable-mode .menu-card {
+        width: 100%;
+        min-width: 0;
+        height: clamp(145px, 16dvh, 215px);
+        padding: clamp(8px, 1.5vw, 18px);
+        box-sizing: border-box;
+    }
+
+    /* AI 모드의 기존 카드 정렬 구조 유지 */
+    body.readable-mode .menu-card {
+        grid-template-rows:
+            minmax(0, 1fr)
+            minmax(32px, auto)
+            auto
+            auto;
+        row-gap: clamp(2px, 0.4dvh, 6px);
+    }
+
+    /* 7. 음료 이미지 */
+    .drink-icon,
+    body.readable-mode .drink-icon {
+        width: clamp(65px, 8vw, 100px);
+        height: clamp(65px, 8vw, 100px);
+        max-width: 100%;
+        max-height: 100%;
+        flex-shrink: 1;
+    }
+
+    .drink-icon img,
+    body.readable-mode .drink-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    /* 8. 메뉴 글자 */
+    .menu-card strong,
+    body.readable-mode .menu-card strong {
+        font-size: clamp(13px, 1.7vw, 21px);
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+        text-align: center;
+    }
+
+    body.readable-mode .menu-card small {
+        font-size: clamp(11px, 1.35vw, 17px);
+    }
+
+    .menu-card span:not(.drink-icon),
+    body.readable-mode .menu-card span:not(.drink-icon) {
+        font-size: clamp(12px, 1.55vw, 19px);
+    }
+
+    /* 9. 하단 주문 영역 */
+    .bottom-bar {
+        min-height: clamp(70px, 8dvh, 100px);
+        height: auto;
+        flex-shrink: 0;
+        padding: clamp(10px, 1.5vw, 20px);
+    }
+
+    #order-btn {
+        width: clamp(110px, 18vw, 180px);
+        height: clamp(42px, 5dvh, 60px);
+        font-size: clamp(13px, 1.5vw, 19px);
+    }
+
+    /* 10. 일반 옵션 화면 */
+    #option-screen {
+        flex: 1;
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    #option-screen .option-content {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #option-screen .option-footer {
+        flex-shrink: 0;
+    }
+
+    /* 11. AI 단계별 옵션 화면 */
+    body.ai-mode .ai-option-wizard {
+        width: 100%;
+        max-width: 850px;
+        flex: 1;
+        min-height: 0;
+        margin: 0 auto;
+        padding: clamp(16px, 2.5vw, 34px);
+        box-sizing: border-box;
+    }
+
+    body.ai-mode .ai-wizard-body {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.ai-mode #ai-wizard-question {
+        font-size: clamp(23px, 2.8vw, 34px);
+        line-height: 1.4;
+    }
+
+    body.ai-mode #ai-wizard-description {
+        font-size: clamp(15px, 1.8vw, 21px);
+    }
+
+    body.ai-mode .ai-wizard-choice {
+        min-height: clamp(66px, 7dvh, 85px);
+        padding: clamp(14px, 1.8vw, 22px);
+        font-size: clamp(17px, 2.1vw, 24px);
+    }
+
+    body.ai-mode .ai-wizard-footer {
+        flex-shrink: 0;
+    }
+
+    body.ai-mode .ai-wizard-footer button {
+        min-height: clamp(54px, 6dvh, 72px);
+        font-size: clamp(17px, 2vw, 22px);
+    }
+
+    /* 12. AI 메뉴 추천 창 */
+    .ai-helper-panel {
+        width: min(92%, 850px);
+        max-width: 850px;
+        box-sizing: border-box;
+    }
+
+    .ai-helper-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* 13. AI 메뉴 추천 버튼 */
+    .ai-assistant-btn {
+        right: clamp(16px, 2vw, 28px);
+        bottom: clamp(80px, 9dvh, 115px);
+    }
+
+    /* 14. 결제 및 포인트 팝업 */
+    .upsell-sheet {
+        width: min(100%, 650px);
+        max-width: 650px;
+        box-sizing: border-box;
+        max-height: 90vh;
+        max-height: 90dvh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    .payment-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .payment-option {
+        height: clamp(76px, 8dvh, 100px);
+    }
+
+    /* 15. 영수증 */
+    .receipt-screen {
+        width: 100%;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .receipt-paper,
+    .receipt-actions {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+
+
+/* 숨겨진 화면은 항상 숨기기 */
+.hidden,
+.ai-option-wizard.hidden {
+    display: none !important;
+}
+
+/* AI 옵션 선택지가 많으면 내부만 스크롤 */
+body.ai-mode .ai-wizard-body {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* 메뉴가 많으면 메뉴 영역에서 스크롤 */
+#menu-grid {
+    min-height: 0;
+}
+
+/* 스탠바이미 세로 화면 - 카테고리 전체 표시 */
+@media screen and (min-width: 600px)
+       and (orientation: portrait) {
+
+    .category-bar {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 8px;
+        padding: 12px;
+        overflow: visible !important;
+        height: auto !important;
+        box-sizing: border-box;
+    }
+
+    .category-bar button {
+        width: 100%;
+        min-width: 0;
+        min-height: 55px;
+        padding: 10px 5px;
+        font-size: 17px;
+        white-space: normal;
+        word-break: keep-all;
+    }
+
+    body.readable-mode .category-bar button {
+        font-size: 19px;
+        min-height: 60px;
+    }
+}
+
+/* AI 최종 주문 확인 - 세트 선택 */
+
+.ai-wizard-set-choice {
+    margin-top: 18px;
+    padding: 18px;
+    border-radius: 14px;
+    background: #e8f1fb;
+}
+
+.ai-wizard-set-choice h3 {
+    margin: 0 0 8px;
+    color: #243e5c;
+    font-size: 20px;
+}
+
+.ai-wizard-set-choice p {
+    margin: 0 0 16px;
+    color: #607b96;
+    font-size: 14px;
+}
+
+.ai-set-choice {
+    display: block;
+    width: 100%;
+    min-height: 60px;
+    margin-top: 10px;
+    padding: 14px;
+    border: 1.5px solid #d5e0ec;
+    border-radius: 12px;
+    background: white;
+    color: #273e58;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ai-set-choice.selected {
+    border: 2px solid #477fb5;
+    background: #edf5ff;
+    color: #245b93;
+}
+
+/* 추가 재료 단계에서는 선택 완료 버튼 표시 */
+body.ai-mode .ai-wizard-footer {
+    display: flex;
+    gap: 12px;
+}
+
+/* 숨김 클래스 우선 적용 */
+.ai-wizard-set-choice.hidden {
+    display: none !important;
+}
+
+/* 일반 모드: 기존 메뉴 아이콘 크기 유지 */
+.drink-icon {
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    min-width: 0;
+    min-height: 0;
+    max-width: none;
+    max-height: none;
+    margin: 0 0 7px;
+    padding: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+/* 실제 음료 사진 */
+.menu-card .drink-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* AI 가독성 모드: 기존 68px 크기 유지 */
+body.readable-mode .menu-card .drink-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0;
+}
+
+/* 기존 메뉴 카드 크기 유지 */
+.menu-card {
+    overflow: hidden;
+}
+
+/* =========================
+   키오스크 시작 안내 화면
+========================= */
+
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: #f4f0e9;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.intro-content {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100%;
+    padding: 36px 15px 24px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.intro-title {
+    margin: 0;
+    color: #173b32;
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1.35;
+    letter-spacing: -1.5px;
+}
+
+.intro-description {
+    margin: 18px 0 30px;
+    color: #53616a;
+    font-size: 13px;
+    line-height: 1.9;
+    word-break: keep-all;
+}
+
+.intro-description strong {
+    color: #173b32;
+    font-weight: 900;
+}
+
+.intro-situation {
+    padding: 25px 22px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08);
+}
+
+.intro-emojis {
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.intro-label {
+    color: #9a9fa4;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.intro-situation p {
+    margin: 12px 0 0;
+    color: #27363a;
+    font-size: 13px;
+    line-height: 1.9;
+    word-break: keep-all;
+}
+
+#intro-start-btn {
+    width: 100%;
+    min-height: 62px;
+    margin-top: auto;
+    border: none;
+    border-radius: 13px;
+    background: #193e30;
+    color: white;
+    font-size: 19px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#intro-start-btn:active {
+    background: #102d22;
+}
+
+.intro-screen.hidden {
+    display: none !important;
+}
+
+/* =========================
+   시작 화면 추가 디자인
+========================= */
+
+/* 상황 카드의 마지막 질문 */
+.intro-situation-question {
+    margin-top: 16px !important;
+    color: #193e30 !important;
+    font-size: 14px !important;
+    font-weight: 800;
+    line-height: 1.7;
+}
+
+/* 체험 안내 영역 */
+.intro-guide {
+    margin-top: 20px;
+    padding: 18px 20px;
+    background: #e9eee7;
+    border: 1px solid #d8e2d7;
+    border-radius: 14px;
+}
+
+/* 체험 안내 제목 */
+.intro-guide-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #193e30;
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.intro-guide-title span {
+    font-size: 19px;
+}
+
+/* 체험 안내 설명 */
+.intro-guide p {
+    margin: 6px 0;
+    color: #4b5d53;
+    font-size: 12px;
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+/* 시작 버튼과 안내 문구 묶음 */
+.intro-start-area {
+    margin-top: auto;
+    padding-top: 26px;
+}
+
+/* 시작 버튼 위 문구 */
+.intro-start-note {
+    margin: 0 0 14px;
+    color: #7a817d;
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* 버튼 간격 정리 */
+.intro-start-area #intro-start-btn {
+    margin-top: 0;
+}
+
+/* 작은 화면에서 여백 조정 */
+@media (max-width: 480px) {
+    .intro-content {
+        padding-top: 28px;
+    }
+
+    .intro-description {
+        margin-bottom: 24px;
+    }
+
+    .intro-situation {
+        padding: 22px 20px;
+    }
+
+    .intro-guide {
+        padding: 15px 17px;
+    }
+}
+
+/* =========================
+   시작 화면 최종 디자인
+========================= */
+
+/* 상황 카드 마지막 질문 */
+.intro-situation-question {
+    margin-top: 18px !important;
+    color: #193e30 !important;
+    font-size: 14px !important;
+    font-weight: 800;
+    line-height: 1.7;
+}
+
+/* 시작 버튼 영역 */
+.intro-start-area {
+    margin-top: auto;
+    padding-top: 26px;
+}
+
+/* 버튼 위 안내 문구 */
+.intro-start-note {
+    margin: 0 0 15px;
+    color: #65736b;
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: center;
+    word-break: keep-all;
+}
+
+/* 시작 버튼 */
+.intro-start-area #intro-start-btn {
+    margin-top: 0;
+}
+
+/* 작은 화면 */
+@media (max-width: 480px) {
+    .intro-content {
+        padding-top: 28px;
+    }
+
+    .intro-description {
+        margin-bottom: 24px;
+    }
+
+    .intro-situation {
+        padding: 22px 20px;
+    }
+}
+/* 영수증 주문 내역 간격 조정 */
+.receipt-item {
+    margin-bottom: 12px;
+}
+
+.receipt-item-top {
+    margin-bottom: 2px;
+}
+
+.receipt-item p {
+    margin: 2px 0 0 12px;
+    line-height: 1.35;
+    font-size: 12px;
+    color: #999;
+}
+
+/* 사용 불가능한 옵션 */
+.option-disabled {
+    opacity: 0.38;
+    filter: grayscale(1);
+}
+
+.option-disabled .pill {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.option-disabled-title {
+    opacity: 0.45;
+}
+
+/* 차가운 음료의 HOT 버튼 */
+.pill.option-unavailable {
+    opacity: 0.3;
+    filter: grayscale(1);
+    cursor: not-allowed;
+}
+
+/* 샷 증감 버튼 비활성화 */
+#shot-minus:disabled,
+#shot-plus:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+/* AI 옵션 화면 주문 취소 버튼 */
+.ai-wizard-cancel {
+    padding: 11px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: #f3f4f6;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.ai-wizard-cancel:hover {
+    background: #e5e7eb;
+}
+
+.ai-wizard-cancel:active {
+    background: #d1d5db;
+}
+
+/* ==========================
+   미션 결과 박스
+========================== */
+
+.receipt-result {
+    padding: 24px 20px !important;
+    border-radius: 16px;
+    text-align: center;
+}
+
+/* 실패 */
+.receipt-result.fail {
+    background: #fff1ee;
+    border: 1px solid #f2c9c2;
+    color: #b9362c;
+}
+
+/* 성공 */
+.receipt-result.success {
+    background: #eaf8ef;
+    border: 1px solid #bce2ca;
+    color: #187548;
+}
+
+/* 성공 / 실패 아이콘 */
+.mission-result-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.fail .mission-result-icon {
+    background: #d4483b;
+    color: white;
+}
+
+.success .mission-result-icon {
+    background: #218650;
+    color: white;
+}
+
+/* 결과 제목 */
+.mission-result-title {
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+/* 실패 원인 목록 */
+.mission-error-list {
+    background: #faddd8;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 0 0 18px;
+    text-align: left;
+}
+
+.mission-error-count {
+    font-size: 14px;
+    font-weight: 800;
+    color: #a6382e;
+    margin-bottom: 10px;
+}
+
+.mission-error-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #923c34;
+}
+
+.mission-error-dot {
+    width: 6px;
+    height: 6px;
+    background: #c94b40;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+}
+
+/* 구분선 */
+.mission-result-divider {
+    height: 1px;
+    background: currentColor;
+    opacity: 0.18;
+    margin: 16px 0 12px;
+}
+
+/* 소요 시간 */
+.mission-result-time-label {
+    font-size: 13px;
+    opacity: 0.75;
+    margin-bottom: 4px;
+}
+
+.mission-result-time {
+    font-size: 24px;
+    font-weight: 800;
+}
+.mission-error-card {
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.mission-error-label {
+    color: #9f342a;
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.mission-error-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.mission-error-actual,
+.mission-error-expected {
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.mission-error-actual {
+    background: #fff0ee;
+    color: #ba3d32;
+}
+
+.mission-error-expected {
+    background: #eaf8ef;
+    color: #187548;
+}
+
+.mission-error-compare small {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.mission-error-compare strong {
+    display: block;
+    font-size: 15px;
+}
+
+.mission-error-simple {
+    background: white;
+    color: #9f342a;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+/* 얼음 옵션 비활성화 표시 */
+
+.option-group.ice-disabled {
+    opacity: 0.45;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.option-group.ice-disabled .pill {
+    background: #eeeeee !important;
+    color: #999999 !important;
+    border-color: #dddddd !important;
+    cursor: not-allowed !important;
+}
+
+.option-group.ice-disabled + * {
+    pointer-events: none;
+}
+/* 체험 완료 후 수령 안내 */
+
+.pickup-message {
+    background: #eaf5ff;
+    border: 2px solid #a8d5fa;
+    border-radius: 16px;
+    padding: 24px 18px;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.pickup-message-icon {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.pickup-message-title {
+    color: #2563a6;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.pickup-message-text {
+    color: #183f69;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+/* 기프티콘 단어 강조 */
+.gifticon-highlight {
+    color: #176b59;
+    background: #dff4ed;
+    font-weight: 800;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+/* =========================
+   시작 화면 디자인 개선
+========================= */
+
+/* 제목 아래 민트색 밑줄 */
+.intro-title-underline {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.intro-title-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 6px;
+    background: #9bd8c6;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* 오늘의 상황 카드 */
+.intro-situation {
+    position: relative;
+    padding: 30px 22px 25px;
+    background: #ffffff;
+    border: 1px solid #e0e9e2;
+    border-radius: 22px;
+    box-shadow: 0 10px 24px rgba(25, 62, 48, 0.08);
+}
+
+/* 오늘의 상황 초록색 라벨 */
+.intro-label {
+    display: inline-block;
+    background: #193e30;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 9px 16px;
+    border-radius: 10px;
+}
+
+/* 상황 설명 */
+.intro-situation .intro-situation-text {
+    margin: 20px 0 0;
+    color: #27363a;
+    font-size: 14px;
+    line-height: 1.9;
+    word-break: keep-all;
+}
+
+/* 시작 버튼 화살표 */
+.intro-start-arrow {
+    margin-left: 8px;
+    font-size: 24px;
+    font-weight: 800;
+    vertical-align: -1px;
+}
+
+/* 시작 화면 내부 레이어 */
+.intro-content {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 75px;
+}
+
+/* 하단 물결 */
+.intro-bottom-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: #b9dccb;
+
+    clip-path: polygon(
+        0 30%,
+        12% 20%,
+        25% 30%,
+        40% 65%,
+        55% 85%,
+        70% 65%,
+        85% 25%,
+        100% 35%,
+        100% 100%,
+        0 100%
+    );
+
+    pointer-events: none;
+    z-index: 0;
+}
+/* 오늘의 상황 두 번째 문장 */
+.intro-situation .intro-situation-description {
+    margin: 22px 0 0;
+    color: #45524b;
+    font-size: 14px;
+    line-height: 1.9;
+    word-break: keep-all;
+}
+/* AI 옵션 이름과 가격을 분리 */
+.ai-choice-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    text-align: left;
+}
+
+/* 가격은 작은 회색 글씨 */
+.ai-choice-price {
+    color: #999999;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* 선택했을 때도 가격은 회색 유지 */
+.ai-wizard-choice.selected .ai-choice-price {
+    color: #888888;
+}
+
+/* 미션 시작 카운트다운 */
+.mission-countdown-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+    background: rgba(12, 23, 37, 0.65);
+    backdrop-filter: blur(3px);
+    pointer-events: all;
+}
+
+.mission-countdown-text {
+    color: #ffffff;
+    font-size: clamp(80px, 15vw, 120px);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.4;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    white-space: pre-line;
+}
+
+.mission-countdown-text.countdown-mission {
+    font-size: clamp(25px, 5vw, 38px);
+    word-break: keep-all;
+}
+
+.countdown-pop {
+    animation: missionCountdownPop 0.65s ease-out both;
+}
+
+@keyframes missionCountdownPop {
+    0% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 결제 실패 팝업 배경 */
+.payment-fail-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+/* 결제 실패 팝업 */
+.payment-fail-box {
+    width: 100%;
+    max-width: 320px;
+    padding: 30px 22px 24px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+}
+
+/* 실패 아이콘 */
+.payment-fail-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #fff0f0;
+    color: #e54848;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.payment-fail-box h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+    color: #222;
+}
+
+.payment-fail-box p {
+    margin: 0 0 25px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #777;
+}
+
+#payment-fail-confirm {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 10px;
+    background: #444;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+}
+/* AI 모드 - 포인트 적립 생략 버튼 가독성 개선 */
+body.ai-mode .points-skip {
+    font-size: 19px;
+    font-weight: 600;
+    color: #9d9d9d;
+    padding: 14px 20px;
+}
+/* 일반 모드에서는 메뉴 추천 버튼 숨기기 */
+body:not(.ai-mode) #ai-assistant-btn {
+    display: none !important;
+}
+
+/* 스탠바이미 2 세로 모드 보완 */
+@media screen and (min-width: 600px)
+       and (orientation: portrait) {
+
+    /* 가로 방향 넘침 방지 */
+    .kiosk,
+    #menu-screen,
+    #option-screen {
+        box-sizing: border-box;
+        min-width: 0;
+    }
+
+    /* 메뉴 카드가 그리드 너비를 넘지 않도록 */
+    .menu-grid,
+    .menu-card {
+        min-width: 0;
+    }
+
+    /* AI 옵션 선택지는 내부에서 스크롤 */
+    body.ai-mode .ai-wizard-body {
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 팝업 내용이 길어져도 접근 가능하게 */
+    .payment-sheet,
+    .points-sheet {
+        box-sizing: border-box;
+        max-height: 85vh;
+        max-height: 85dvh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+}
+
+/* 스탠바이미 2 세로 모드 - 상단 정보 가독성 개선 */
+@media screen and (min-width: 600px)
+       and (orientation: portrait) {
+
+    .top-bar {
+        height: clamp(60px, 6dvh, 85px);
+        min-height: 60px;
+        padding: 0 clamp(16px, 2.5vw, 32px);
+        gap: 12px;
+        box-sizing: border-box;
+    }
+
+    .top-bar .timer {
+        font-size: clamp(18px, 2.4vw, 28px);
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
+    .top-bar .mission {
+        font-size: clamp(16px, 2vw, 24px);
+        font-weight: 800;
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+}
+
+/* ==========================================
+   AI 메뉴 추천 버튼 표시 상태 통일
+========================================== */
+
+/* 일반 모드에서는 무조건 숨김 */
+body:not(.ai-mode) #ai-assistant-btn {
+    display: none !important;
+}
+
+/* AI 모드의 메뉴 화면에서는 표시 */
+body.ai-mode #ai-assistant-btn {
+    display: flex !important;
+}
+
+/* 옵션 선택 화면에서는 숨김 */
+body.ai-mode:has(#option-screen:not(.hidden))
+#ai-assistant-btn {
+    display: none !important;
+}
+
+/* AI 추천창이 열려 있을 때 숨김 */
+body.ai-mode:has(#ai-helper-panel.open)
+#ai-assistant-btn {
+    display: none !important;
+}
+
+/* 기프티콘 버튼 테두리 깜빡임 */
+
+#payment-overlay .payment-grid .payment-option:nth-child(8) {
+    position: relative;
+    border: 2.5px solid #38bdf8 !important;
+    border-radius: 12px;
+
+    animation: gifticonBlink 2.6s ease-in-out infinite !important;
+}
+
+@keyframes gifticonBlink {
+    0%, 100% {
+        border-color: #d1d5db;
+        box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+    }
+
+    50% {
+        border-color: #00bfff;
+        box-shadow:
+            0 0 10px rgba(0, 191, 255, 0.65),
+            0 0 20px rgba(0, 191, 255, 0.35);
+    }
+}
+/* 시작 안내 화면 - 제한시간 안내 */
+
+.intro-time-notice {
+    margin: 0 0 16px;
+    text-align: center;
+    font-size: clamp(15px, 1.8vw, 20px);
+    font-weight: 600;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.intro-time-notice strong {
+    color: #ef4444;
+    font-weight: 900;
+    font-size: 1.15em;
+}
+
+/* ==========================================
+   AI 모드 - 주문하기 버튼 반짝임
+========================================== */
+
+/* AI 모드에서 주문 가능한 상태일 때만 */
+body.ai-mode #order-btn:not(:disabled) {
+    position: relative;
+    border: 2.5px solid #38bdf8;
+
+    animation: aiOrderGlow 2.6s ease-in-out infinite;
+}
+
+@keyframes aiOrderGlow {
+    0%, 100% {
+        border-color: #d1d5db;
+        box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+    }
+
+    50% {
+        border-color: #00bfff;
+        box-shadow:
+            0 0 10px rgba(0, 191, 255, 0.65),
+            0 0 20px rgba(0, 191, 255, 0.35);
+    }
+}
+
+/* 주문할 메뉴가 없으면 애니메이션 없음 */
+body.ai-mode #order-btn:disabled {
+    animation: none;
+}
+
+/* 움직임 최소화 설정 대응 */
+@media (prefers-reduced-motion: reduce) {
+    body.ai-mode #order-btn {
+        animation: none;
+    }
+}
+
+/* 영수증 메뉴 이름과 옵션 설명 정렬 */
+
+.receipt-item-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+}
+
+.receipt-item-diamond {
+    flex-shrink: 0;
+    font-size: 13px;
+}
+
+.receipt-item-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.receipt-item-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+}
+
+.receipt-item-details p {
+    margin: 4px 0 0;
+    padding: 0 !important;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #999;
+    overflow-wrap: anywhere;
+}
+
+.receipt-item-price {
+    flex-shrink: 0;
+    margin-left: auto;
+    font-size: 13px;
+    white-space: nowrap;
+}
